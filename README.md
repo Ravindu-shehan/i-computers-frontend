@@ -1,16 +1,54 @@
-# React + Vite
+# I Computers - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive e-commerce frontend for **I Computers**, a computer and technology products platform.
 
-Currently, two official plugins are available:
+The application provides a user-friendly interface for browsing computer products, viewing product details, managing user authentication, and interacting with the backend REST API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- Responsive and modern user interface
+- User registration and login
+- User authentication
+- Product browsing
+- Product details
+- Product search
+- Product filtering
+- Dynamic product data from the backend API
+- API integration using Axios
+- Protected user functionality
+- Client-side routing
+- Reusable React components
+- Responsive design for desktop and mobile devices
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technologies Used
 
-## Expanding the ESLint configuration
+- **React.js** – Frontend JavaScript library
+- **Vite** – Frontend build tool
+- **JavaScript** – Programming language
+- **Axios** – HTTP client for API communication
+- **React Router** – Client-side routing
+- **CSS** – Styling and responsive design
+- **ES6+** – Modern JavaScript features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structure
+
+```text
+I-Computers-Frontend/
+│
+├── public/
+│
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── context/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── ...
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
