@@ -5,7 +5,7 @@ import LoginPage from "./pages/login";
 
 export default function App() {
   return(
-    <div className="w-full h-screen bg-amber-100">
+    <div className="w-full h-screen bg-primary text-secondary">
       <Routes>
         <Route path="/" element= {<HomePage/>}/>
         <Route path="/admin/*" element={<AdminPage/>}/>
