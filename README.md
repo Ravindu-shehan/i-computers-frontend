@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 # I Computers - Frontend
 
 A modern and responsive e-commerce frontend for **I Computers**, a computer and technology products platform.
