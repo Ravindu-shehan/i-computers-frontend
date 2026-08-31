@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -7,6 +7,7 @@ export default function LoginPage(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+    const navigate =useNavigate()
 
     /*function login(){
         console.log(email)
@@ -31,13 +32,20 @@ export default function LoginPage(){
 
     async function login(){
         try{
-            const response = await axios.post(import.meta.env.VITE_API_URL + "/users/login",
+            const response = await axios.post(import.meta.env.VITE_API_URL + "/api/users/login",
                 {
                     email : email,
                     password : password
                 }
             )
             console.log(response)
+            if(response.data.role == "admin"){
+                //we should redirect to admin dashboard
+                navigate("/admin/")  
+            }else{
+                //redirect to user dashboard
+                navigate("/") 
+            }
             toast.success("Login successful")
 
         }catch(error){
