@@ -39,6 +39,11 @@ export default function LoginPage(){
                 }
             )
             console.log(response)
+            toast.success("Login successful")
+            localStorage.setItem("token", response.data.token)
+
+            
+
             if(response.data.role == "admin"){
                 //we should redirect to admin dashboard
                 navigate("/admin/")  
@@ -46,7 +51,7 @@ export default function LoginPage(){
                 //redirect to user dashboard
                 navigate("/") 
             }
-            toast.success("Login successful")
+           
 
         }catch(error){
             console.log(error)
