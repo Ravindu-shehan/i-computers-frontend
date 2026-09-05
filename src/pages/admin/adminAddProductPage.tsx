@@ -15,7 +15,8 @@ export default function AdminAddProductPage(){
     const [productStock, setProductStock] = useState(0);
 
     return(
-        <div className="w-full max-h-full flex flex-wrap items-start">
+        <div className="w-full max-h-full flex flex-wrap items-start overflow-scroll">
+            <h1 className="text-3xl font-bold m-4 w-full">Add new Product</h1>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="text-xl font-bold m-2">Product ID</label>
                 <input 
@@ -85,12 +86,16 @@ export default function AdminAddProductPage(){
             </div>
             <div className="w-[25%] h-[120px] flex flex-col ">
                 <label className="text-xl font-bold m-2">Brand</label>
-                <input 
-                    placeholder="Apple"
+                <select
                     className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 flex-1 focus:outline-white"
                     value={productBrand}
-                    onChange={(e) => {setProductBrand(e.target.value)}}
-                />
+                    onChange={(e) => {setProductBrand(e.target.value)}}>
+                
+                    <option value="">Select a brand</option>
+                    <option value="1">Apple</option>
+                    <option value="2">Samsung</option>
+                </select>
+                
             </div>
             <div className="w-[25%] h-[120px] flex flex-col ">
                 <label className="text-xl font-bold m-2">Model</label>
@@ -110,6 +115,9 @@ export default function AdminAddProductPage(){
                     <option value="false">No</option>
                     <option value="true">Yes</option>
                 </select>
+            </div>
+            <div className="w-[50%] h-[80px] flex flex-col ">
+
             </div>
             
             
