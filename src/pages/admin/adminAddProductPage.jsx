@@ -1,6 +1,9 @@
 import { useState } from "react";
+import axios from "axios";
+import  toast  from "react-hot-toast";
 
 export default function AdminAddProductPage(){
+
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
@@ -11,11 +14,42 @@ export default function AdminAddProductPage(){
     const [productBrand, setProductBrand] = useState("Standard");
     const [productModel, setProductModel] = useState("");
     const [productIsVisible, setProductIsVisible] = useState(true);
-    const [productImage, setProductImage] = useState("");
-    const [productStock, setProductStock] = useState(0);
+    
+
+    async function handleAddProduct(){
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                toast.error("You must be logged in to add a product.");
+                window.location.href = "/login"; // Redirect to login page
+                return;
+            }
+            await axios.post(import.meta.env.VITE_API_URL + "/product",{
+                productId: productId,
+                productName: productName,
+                productDescription: productDescription,
+                productAltNames: productAltNames,
+                productPrice: productPrice,
+                productLabelledPrice: productLabelledPrice,
+                category: category,
+                productBrand: productBrand,
+                productModel: productModel,
+                productIsVisible: productIsVisible,
+                
+            },{
+                headers: {
+                    Authorization: "Bearer " + token
+                },
+            })
+        }catch (error) {
+            toast.error("Error adding product. Please try again later.");
+            console.error(error)
+            return;
+        }
+    }
 
     return(
-        <div className="w-full max-h-full flex flex-wrap items-start  border-black overflow-y-scroll">
+        <div className="w-full max-h-full flex flex-wrap items-start  border-black overflow-y-scroll hide-scroll-track">
             <h1 className="text-3xl font-bold m-1 w-full sticky top-0 bg-primary">Add new Product</h1>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="text-xl font-bold m-2">Product ID</label>
@@ -116,8 +150,14 @@ export default function AdminAddProductPage(){
                     <option value="true">Yes</option>
                 </select>
             </div>
-            <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-bl-2xl rounded-br-2xl flex justify-center items-center">
-
+            <div className="w-full h-[80px] bg-white sticky bottom-0  rounded-b-2xl flex justify-end items-center p-4 gap-4 shadow-2xl"> 
+                <button className="bg-red-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-red-500 ">
+                    Cancel
+                </button>
+                <button onClick={handleAddProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">
+                    Add Product
+                </button>
+                
             </div>
             
             

@@ -1,6 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+
 export default function AdminProductsPage(){
     return(
         <div className="w-full h-full overflow-y-scroll "> 
