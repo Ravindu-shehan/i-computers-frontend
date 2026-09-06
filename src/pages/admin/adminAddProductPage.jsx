@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import  toast  from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminAddProductPage(){
 
@@ -8,12 +9,13 @@ export default function AdminAddProductPage(){
     const [productName, setProductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
     const [productAltNames, setProductAltNames] = useState("");
-    const [productPrice, setProductPrice] = useState(0);
-    const [productLabelledPrice, setProductLabelledPrice] = useState(0);
+    const [productPrice, setProductPrice] = useState("");
+    const [productLabelledPrice, setProductLabelledPrice] = useState("");
     const [category, setCategory] = useState("Others");
     const [productBrand, setProductBrand] = useState("Standard");
     const [productModel, setProductModel] = useState("");
     const [productIsVisible, setProductIsVisible] = useState(true);
+    const navigate = useNavigate();
     
 
     async function handleAddProduct(){
@@ -24,26 +26,28 @@ export default function AdminAddProductPage(){
                 window.location.href = "/login"; // Redirect to login page
                 return;
             }
-            await axios.post(import.meta.env.VITE_API_URL + "/product",{
+            await axios.post(import.meta.env.VITE_API_URL + "/api/products",{
                 productId: productId,
-                productName: productName,
-                productDescription: productDescription,
-                productAltNames: productAltNames,
-                productPrice: productPrice,
-                productLabelledPrice: productLabelledPrice,
+                name: productName,
+                description: productDescription,
+                altNames: productAltNames.split(","),
+                price: productPrice,
+                labelledPrice: productLabelledPrice,
                 category: category,
-                productBrand: productBrand,
-                productModel: productModel,
-                productIsVisible: productIsVisible,
+                brand: productBrand,
+                model: productModel,
+                isVisible: productIsVisible,
                 
             },{
                 headers: {
                     Authorization: "Bearer " + token
                 },
             })
+            toast.success("Product added successfully!");
+            navigate("/admin/products");
         }catch (error) {
-            toast.error("Error adding product. Please try again later.");
-            console.error(error)
+            
+            toast.error(error?.response?.data.message || "failed to add product.");
             return;
         }
     }
@@ -113,9 +117,10 @@ export default function AdminAddProductPage(){
                     onChange={(e) => {setCategory(e.target.value)}} >
                 
                     <option value="">Select a category</option>
-                    <option value="1">Electronics</option>
-                    <option value="2">Clothing</option>
-                    <option value="3">Home & Kitchen</option>
+                    <option value="1">Mobile Phones</option>
+                    <option value="2">Accessories</option>
+                    <option value="3">Computes</option>
+                    <option value="4">Laptops</option>
                 </select>
             </div>
             <div className="w-[25%] h-[120px] flex flex-col ">
@@ -127,7 +132,11 @@ export default function AdminAddProductPage(){
                 
                     <option value="">Select a brand</option>
                     <option value="1">Apple</option>
-                    <option value="2">Samsung</option>
+                    <option value="2">Asus</option>
+                    <option value="3">Dell</option>
+                    <option value="4">HP</option>
+                    <option value="5">Lenovo</option>
+
                 </select>
                 
             </div>
