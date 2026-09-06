@@ -15,8 +15,8 @@ export default function AdminAddProductPage(){
     const [productStock, setProductStock] = useState(0);
 
     return(
-        <div className="w-full max-h-full flex flex-wrap items-start overflow-scroll">
-            <h1 className="text-3xl font-bold m-4 w-full">Add new Product</h1>
+        <div className="w-full max-h-full flex flex-wrap items-start  border-black overflow-y-scroll">
+            <h1 className="text-3xl font-bold m-1 w-full sticky top-0 bg-primary">Add new Product</h1>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="text-xl font-bold m-2">Product ID</label>
                 <input 
@@ -116,7 +116,7 @@ export default function AdminAddProductPage(){
                     <option value="true">Yes</option>
                 </select>
             </div>
-            <div className="w-[50%] h-[80px] flex flex-col ">
+            <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-bl-2xl rounded-br-2xl flex justify-center items-center">
 
             </div>
             
