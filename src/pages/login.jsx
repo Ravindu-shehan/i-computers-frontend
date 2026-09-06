@@ -40,6 +40,7 @@ export default function LoginPage(){
             )
             console.log(response)
             toast.success("Login successful")
+            
             localStorage.setItem("token", response.data.token)
 
             

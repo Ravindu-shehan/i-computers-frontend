@@ -1,7 +1,0 @@
-.hide-scroll-track::-webkit-scrollbar {
-    width: 8px;
-}
-.hide-scroll-track::-webkit-scrollbar-track {
-    background: transparent;
-    
-} 
