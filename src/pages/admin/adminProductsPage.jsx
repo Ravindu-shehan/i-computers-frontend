@@ -96,18 +96,136 @@ export default function AdminProductsPage(){
         <div className="w-full h-full overflow-y-scroll "> 
          
             <h1 className="text-center text-2xl font-bold p-[10px] border-b-4 border-white sticky top-0 bg-white">Products Management</h1>
-            <Link to="/admin/add-product" className="flex items-center gap-2 bg-amber-500 text-white p-2 mt-20 rounded-md hover:bg-amber-600 fixed bottom-10 right-15">
-           
-                <FaPlus /> 
-            </Link>
+            
+            
             {
                 products.map(
                     (item, index)=>{
                         
-                        return <h1 key={index}>{item.name}</h1>
+                        //return <h1 key={index}>{item.productId}</h1>
                     }
                 )
             }
+            <div className="w-full overflow-hidden rounded-2xl border border-secondary/10 bg-white shadow-lg">
+
+  {/* Header */}
+  <div className="flex items-center justify-between border-b border-secondary/10 bg-primary px-6 py-4">
+    <div>
+      <h2 className="text-xl font-bold text-secondary">
+        Products
+      </h2>
+      <p className="mt-1 text-sm text-secondary/60">
+        Manage your products and their visibility
+      </p>
+    </div>
+
+    <span className="rounded-full bg-secondary px-4 py-1.5 text-sm font-semibold text-primary">
+      {products.length} Products
+    </span>
+  </div>
+
+  {/* Vertical Scroll Only */}
+  <div className="max-h-[600px] overflow-y-auto">
+    <table className="w-full text-left">
+
+      <thead className="sticky top-0 z-10 bg-gray-50">
+        <tr className="border-b border-secondary/10">
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Product ID
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Product
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Price
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Labeled Price
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Category
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Image
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Status
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Brand
+          </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Model
+          </th>
+        </tr>
+      </thead>
+
+      <tbody className="divide-y divide-secondary/10">
+        {products.map((item) => (
+          <tr
+            key={item.productId}
+            className="group transition-colors hover:bg-primary/40"
+          >
+            <td className="px-5 py-4">
+              {item.productId}
+            </td>
+
+            <td className="px-5 py-4 font-semibold text-secondary">
+              {item.name}
+            </td>
+
+            <td className="px-5 py-4 font-bold text-secondary">
+              ${item.price}
+            </td>
+
+            <td className="px-5 py-4 text-secondary/60 line-through">
+              ${item.labeledPrice}
+            </td>
+
+            <td className="px-5 py-4">
+              <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                {item.category}
+              </span>
+            </td>
+
+            <td className="px-5 py-4">
+              <img
+                src={item.images?.[0]}
+                alt={item.name}
+                className="h-14 w-14 rounded-xl object-cover"
+              />
+            </td>
+
+            <td className="px-5 py-4">
+              {item.isVisible ? (
+                <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-600">
+                  ● Visible
+                </span>
+              ) : (
+                <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-500">
+                  ● Hidden
+                </span>
+              )}
+            </td>
+
+            <td className="px-5 py-4 font-medium text-secondary">
+              {item.brand}
+            </td>
+
+            <td className="px-5 py-4 text-secondary/70">
+              {item.model}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+
+    </table>
+  </div>
+</div>
+            <Link to="/admin/add-product" className="flex items-center gap-2 bg-amber-500 text-white p-2 mt-20 rounded-md hover:bg-amber-600 fixed bottom-10 right-15">
+           
+                <FaPlus /> 
+                </Link>
             
         </div>
     )

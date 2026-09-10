@@ -1,10 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import  toast  from "react-hot-toast";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-=======
->>>>>>> 74e9fd01504b06e942274d6522ea471dd2850e26
 
 export default function AdminAddProductPage(){
 
@@ -18,10 +15,7 @@ export default function AdminAddProductPage(){
     const [productBrand, setProductBrand] = useState("Standard");
     const [productModel, setProductModel] = useState("");
     const [productIsVisible, setProductIsVisible] = useState(true);
-<<<<<<< HEAD
     const navigate = useNavigate();
-=======
->>>>>>> 74e9fd01504b06e942274d6522ea471dd2850e26
     
 
     async function handleAddProduct(){
@@ -32,7 +26,6 @@ export default function AdminAddProductPage(){
                 window.location.href = "/login"; // Redirect to login page
                 return;
             }
-<<<<<<< HEAD
             await axios.post(import.meta.env.VITE_API_URL + "/api/products",{
                 productId: productId,
                 name: productName,
@@ -44,36 +37,17 @@ export default function AdminAddProductPage(){
                 brand: productBrand,
                 model: productModel,
                 isVisible: productIsVisible,
-=======
-            await axios.post(import.meta.env.VITE_API_URL + "/product",{
-                productId: productId,
-                productName: productName,
-                productDescription: productDescription,
-                productAltNames: productAltNames,
-                productPrice: productPrice,
-                productLabelledPrice: productLabelledPrice,
-                category: category,
-                productBrand: productBrand,
-                productModel: productModel,
-                productIsVisible: productIsVisible,
->>>>>>> 74e9fd01504b06e942274d6522ea471dd2850e26
                 
             },{
                 headers: {
                     Authorization: "Bearer " + token
                 },
             })
-<<<<<<< HEAD
             toast.success("Product added successfully!");
             navigate("/admin/products");
         }catch (error) {
             
             toast.error(error?.response?.data.message || "failed to add product.");
-=======
-        }catch (error) {
-            toast.error("Error adding product. Please try again later.");
-            console.error(error)
->>>>>>> 74e9fd01504b06e942274d6522ea471dd2850e26
             return;
         }
     }
