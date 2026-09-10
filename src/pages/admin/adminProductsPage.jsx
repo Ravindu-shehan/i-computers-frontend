@@ -164,7 +164,7 @@ export default function AdminProductsPage(){
         {products.map((item) => (
           <tr
             key={item.productId}
-            className="group transition-colors hover:bg-primary/40"
+            className="group transition-colors  hover:bg-primary/40"
           >
             <td className="px-5 py-4">
               {item.productId}
