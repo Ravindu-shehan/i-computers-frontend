@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import getFormattedPrice from "../../../utils/price-format";
 
 const sampleProducts = [
     {
@@ -175,11 +176,11 @@ export default function AdminProductsPage(){
             </td>
 
             <td className="px-5 py-4 font-bold text-secondary">
-              ${item.price}
+              LKR{getFormattedPrice(item.price)}
             </td>
 
             <td className="px-5 py-4 text-secondary/60 line-through">
-              ${item.labeledPrice}
+              LKR{getFormattedPrice(item.labeledPrice)}
             </td>
 
             <td className="px-5 py-4">
