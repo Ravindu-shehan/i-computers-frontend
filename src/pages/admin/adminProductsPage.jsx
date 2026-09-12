@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import getFormattedPrice from "../../../utils/price-format";
@@ -94,15 +94,24 @@ const sampleProducts = [
 
 export default function AdminProductsPage(){
     const [products, setProducts] = useState(sampleProducts);
-    
-    const token = localStorage.getItem("token");
-    axios.get(import.meta.env.VITE_API_URL + "/api/products", {
+    useEffect(()=>{
+      const token = localStorage.getItem("token");
+
+      axios.get(import.meta.env.VITE_API_URL + "/api/products", {
       headers: {
         Authorization: "Bearer " + token
       }
     }).then((response)=>{
-      setProducts(response.data.products);
+
+      setProducts(response.data);
     })
+
+    }, [])
+
+    
+
+    
+
     return(
         <div className="w-full h-full overflow-y-scroll "> 
          
