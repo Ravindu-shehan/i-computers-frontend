@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import uploadFile from "../../utils/mediaUpload";
+import uploadFile from "../../../utils/mediaUpload.js";
 
 export default function AdminAddProductPage(){
     
