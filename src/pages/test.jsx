@@ -31,11 +31,7 @@ export default function Test(){
            }/>
 
            
-           <input type="file" onChange={
-            (e)=>{
-                setFile(e.target.files[0])
-            }
-           }/>
+          
 
            <button onChange={upload} className="w-[100px] h-[40px] bg-accent text-white rounded-lg">
             Upload 
