@@ -44,7 +44,7 @@ export default function AdminAddProductPage(){
 
             //"sound,base,audio,bluetooth"
             //altNames.split(",") => ["sound","base","audio","bluetooth"]
-            await axios.post( import.meta.env.VITE_API_URL + "/products",{
+            await axios.post( import.meta.env.VITE_API_URL + "/api/products",{
                 productId: productId,
                 name: name,
                 description: description,
@@ -66,6 +66,7 @@ export default function AdminAddProductPage(){
         }catch(err){
             // toast.error("Failed to add product");
             toast.error(err?.response?.data?.message || "Failed to add product");
+            console.log(err)
             return;
         }
     }

@@ -1,25 +1,27 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import uploadFile from "../../../utils/mediaUpload.js";
 
 export default function AdminUpdateProductPage(){
     
-    const [productId , setProductId] = useState("");
-    const [name , setName] = useState("");
-    const [description , setDescription] = useState("");
-    const [altNames , setAltNames] = useState("");
-    const [price , setPrice] = useState("");
-    const [labelledPrice , setLabelledPrice] = useState("");
-    const [category , setCategory] = useState("Others");
-    const [brand , setBrand] = useState("Standard");
-    const [model , setModel] = useState("");
-    const [isVisible , setIsVisible] = useState(true);
+    const location =useLocation()
+    const [productId , setProductId] = useState(location.state.productId);
+    const [name , setName] = useState(location.state.name);
+    const [description , setDescription] = useState(location.state.description);
+    const [altNames , setAltNames] = useState(location.state.altNames.join(","));
+    const [price , setPrice] = useState(location.state.price);
+    const [labelledPrice , setLabelledPrice] = useState(location.state.labelledPrice);
+    const [category , setCategory] = useState(location.state.category);
+    const [brand , setBrand] = useState(location.state.brand);
+    const [model , setModel] = useState(location.state.model);
+    const [isVisible , setIsVisible] = useState(location.state.isVisible);
     const [files , setFiles] = useState([]);
     const navigate = useNavigate()
+    console.log(location)
 
-    async function handleAddProduct(){      
+    async function handleUpdateProduct(){      
         try{
 
 
@@ -75,7 +77,7 @@ export default function AdminUpdateProductPage(){
             <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Edit Product</h1>
             <div className="w-[50%]   h-[120px] flex flex-col">
                 <label className="font-bold ml-2">Product ID</label>
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}}  placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
+                <input value={productId} disabled onChange={(e)=>{setProductId(e.target.value)}}  placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
             </div>
             <div className="w-[50%]  h-[120px] flex flex-col">
                 <label className="font-bold ml-2">Product Name</label>
@@ -137,7 +139,7 @@ export default function AdminUpdateProductPage(){
             </div>
             <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center p-4 gap-4 ">
                 <button className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
-                <button onClick={handleAddProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Add Product</button>
+                <button onClick={handleUpdateProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Update Product</button>
             </div>
         </div>
     )

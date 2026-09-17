@@ -237,7 +237,7 @@ export default function AdminProductsPage(){
               {item.model || <span className="text-secondary/40">N/A</span>}
             </td>
             <td className="px-5 py-4">
-              <Link to="/admin/update-product">
+              <Link to="/admin/update-product" state={item}>
               <CiEdit />
 
               </Link>
