@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { CiEdit } from "react-icons/ci";
 import getFormattedPrice from "../../../utils/price-format";
 import axios from "axios";
 
@@ -228,12 +229,18 @@ export default function AdminProductsPage(){
               )}
             </td>
 
-            <td className="px-5 py-4 font-medium text-secondary">
-              {item.brand}
+            <td className="px-5 py-4 font-medium text-secondary whitespace-nowrap">
+              {item.brand  || <span className="text-secondary/40">N/A</span>}
             </td>
 
-            <td className="px-5 py-4 text-secondary/70">
-              {item.model}
+            <td className="px-5 py-4 text-secondary whitespace-nowrap">
+              {item.model || <span className="text-secondary/40">N/A</span>}
+            </td>
+            <td className="px-5 py-4">
+              <Link to="/admin/update-product">
+              <CiEdit />
+
+              </Link>
             </td>
           </tr>
         ))}

@@ -72,7 +72,7 @@ export default function AdminUpdateProductPage(){
     
     return(
         <div className="w-full max-h-full flex flex-wrap items-start  overflow-y-scroll hide-scroll-track">
-            <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Add New Product</h1>
+            <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Edit Product</h1>
             <div className="w-[50%]   h-[120px] flex flex-col">
                 <label className="font-bold ml-2">Product ID</label>
                 <input value={productId} onChange={(e)=>{setProductId(e.target.value)}}  placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
