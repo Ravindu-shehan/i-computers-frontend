@@ -41,13 +41,17 @@ export default function AdminUpdateProductPage(){
 
             }
 
-            const imageURLs = await Promise.all(fileUploadPromises);
+            let imageURLs = await Promise.all(fileUploadPromises);
+
+            if(imageURLs.length == 0){
+                imageURLs = location.state.images
+            }
 
 
             //"sound,base,audio,bluetooth"
             //altNames.split(",") => ["sound","base","audio","bluetooth"]
-            await axios.post( import.meta.env.VITE_API_URL + "/products",{
-                productId: productId,
+            await axios.put( import.meta.env.VITE_API_URL + "/products"+ productId,{
+               
                 name: name,
                 description: description,
                 price : price,
@@ -63,7 +67,7 @@ export default function AdminUpdateProductPage(){
                     Authorization : "Bearer "+token
                 }
             })
-            toast.success("Product added successfully");
+            toast.success("Product updated successfully");
             navigate("/admin/products");
         }catch(err){
             // toast.error("Failed to add product");

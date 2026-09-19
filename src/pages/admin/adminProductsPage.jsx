@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
+import { CiTrash } from "react-icons/ci";
 import getFormattedPrice from "../../../utils/price-format";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const sampleProducts = [
     {
@@ -178,6 +180,9 @@ export default function AdminProductsPage(){
           <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
             Model
           </th>
+          <th className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-secondary/70">
+            Actions
+          </th>
         </tr>
       </thead>
 
@@ -237,10 +242,31 @@ export default function AdminProductsPage(){
               {item.model || <span className="text-secondary/40">N/A</span>}
             </td>
             <td className="px-5 py-4">
-              <Link to="/admin/update-product" state={item}>
+              <div className="flex justify-center items-center">
+              <Link to="/admin/update-product" state={item} className="hover:text-accent">
               <CiEdit />
 
               </Link>
+              <CiTrash className="hover:text-red-600 cursor-pointer m-3"
+              onClick={
+                ()=>{
+                  const token = localStorage.getItem("token");
+                  axios.delete(import.meta.env.VITE_API_URL + "/products/" + item.productId,{
+                    headers: {
+                      Authorization : "Bearer " + token
+                    }
+                  }).then(
+                    ()=>{
+                      toast.success("product deleted successfully");
+                    }
+                  ).catch(
+                    (err)=>{
+                      toast.error(err?.response?.data?.message || "Failed to delete product");
+                    }
+                  )
+                }
+              } />
+              </div>
             </td>
           </tr>
         ))}
