@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminPage from "./pages/admin";
 import HomePage from "./pages/home";
 import LoginPage from "./pages/login";
-import Test from "./pages/test";
+import Test from "./components/test";
 import { Toaster } from "react-hot-toast";
 
 export default function App() {

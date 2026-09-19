@@ -6,6 +6,7 @@ import { CiTrash } from "react-icons/ci";
 import getFormattedPrice from "../../../utils/price-format";
 import axios from "axios";
 import toast from "react-hot-toast";
+import LoadingAnimation from "../../components/loadingAnimation";
 
 const sampleProducts = [
     {
@@ -97,7 +98,10 @@ const sampleProducts = [
 
 export default function AdminProductsPage(){
     const [products, setProducts] = useState(sampleProducts);
+    const [loading, setLoading] = useState(false)
+
     useEffect(()=>{
+      if(loading){
       const token = localStorage.getItem("token");
 
       axios.get(import.meta.env.VITE_API_URL + "/api/products", {
@@ -107,9 +111,11 @@ export default function AdminProductsPage(){
     }).then((response)=>{
 
       setProducts(response.data);
-    })
+      setLoading(false)
+    });
+  }
 
-    }, [])
+    }, [loading])
 
     
 
@@ -148,7 +154,10 @@ export default function AdminProductsPage(){
   </div>
 
   {/* Vertical Scroll Only */}
-  <div className="max-h-[600px] overflow-y-auto">
+  <div className="max-h-[600px] overflow-y-scroll">
+    {loading? (<div className="w-full h-full flex justify-center items-center">
+      <LoadingAnimation/>
+    </div>):(
     <table className="w-full text-left">
 
       <thead className="sticky top-0 z-10 bg-gray-50">
@@ -251,13 +260,14 @@ export default function AdminProductsPage(){
               onClick={
                 ()=>{
                   const token = localStorage.getItem("token");
-                  axios.delete(import.meta.env.VITE_API_URL + "/products/" + item.productId,{
+                  axios.delete(import.meta.env.VITE_API_URL + "/api/products/" + item.productId,{
                     headers: {
                       Authorization : "Bearer " + token
                     }
                   }).then(
                     ()=>{
                       toast.success("product deleted successfully");
+                      setLoading(true)
                     }
                   ).catch(
                     (err)=>{
@@ -273,6 +283,7 @@ export default function AdminProductsPage(){
       </tbody>
 
     </table>
+)}
   </div>
 </div>
             <Link to="/admin/add-product" className="flex items-center gap-2 bg-amber-500 text-white p-2 mt-20 rounded-md hover:bg-amber-600 fixed bottom-10 right-15">

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import uploadFile from "../../utils/mediaUpload.js"
+import uploadFile from "../../..mediaUpload.js"
 
 
 
