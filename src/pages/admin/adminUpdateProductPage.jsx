@@ -10,7 +10,9 @@ export default function AdminUpdateProductPage(){
     const [productId , setProductId] = useState(location.state.productId);
     const [name , setName] = useState(location.state.name);
     const [description , setDescription] = useState(location.state.description);
-    const [altNames , setAltNames] = useState(location.state.altNames.join(","));
+    const [altNames , setAltNames] = useState( Array.isArray(location.state?.altNames)
+        ? location.state.altNames.join(",")
+        : location.state?.altNames || "");
     const [price , setPrice] = useState(location.state.price);
     const [labelledPrice , setLabelledPrice] = useState(location.state.labelledPrice);
     const [category , setCategory] = useState(location.state.category);
@@ -50,7 +52,7 @@ export default function AdminUpdateProductPage(){
 
             //"sound,base,audio,bluetooth"
             //altNames.split(",") => ["sound","base","audio","bluetooth"]
-            await axios.put( import.meta.env.VITE_API_URL + "/products"+ productId,{
+            await axios.put( import.meta.env.VITE_API_URL + "/api/products/"+ productId,{
                
                 name: name,
                 description: description,
